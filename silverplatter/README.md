@@ -1,4 +1,4 @@
-# Silver Platter (Lite)
+# Silver Platter
 
 The 1st simple version of the Silver Platter website.
 
