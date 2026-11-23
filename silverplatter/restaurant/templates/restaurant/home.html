@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}{{ site.NAME }}{% endblock %}
+
+{% block content %}
+<section class="sp-hero">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-7">
+        <p class="eyebrow mb-3">Est. Downtown &middot; Reservations Nightly</p>
+        <h1 class="mb-4">A table is<br>always being set<br>for you.</h1>
+        <p class="lede mb-4">{{ site.NAME }} is a quiet room doing loud things with a
+          short, seasonal menu and service that remembers how you like your table.</p>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="{% url 'restaurant:book_reservation' %}" class="btn btn-sp-primary">Reserve a Table</a>
+          <a href="{% url 'restaurant:menu_list' %}" class="btn btn-sp-ghost-light">View the Menu</a>
+        </div>
+      </div>
+      <div class="col-lg-5 d-none d-lg-flex justify-content-end">
+        <div class="hero-figure">&#9670;<br>&#9670;&nbsp;&#9670;</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sp-section">
+  <div class="container">
+    <div class="place-rule"><span class="diamond"></span></div>
+    <div class="section-heading center mb-5">
+      <p class="eyebrow">From the Kitchen</p>
+      <h2>Signature Dishes</h2>
+      <p class="text-muted-sp">A handful of plates the chef won't take off the menu.</p>
+    </div>
+
+    <div class="row g-4">
+      {% for dish in signature_dishes %}
+        <div class="col-md-4">
+          <div class="sp-card sp-card-hover">
+            <span class="sp-badge mb-3">Signature</span>
+            <h3 class="h4">{{ dish.name }}</h3>
+            <p class="text-muted-sp small">{{ dish.description }}</p>
+            <p class="menu-item-price mb-0">${{ dish.price }}</p>
+          </div>
+        </div>
+      {% empty %}
+        <div class="col-12 text-center text-muted-sp">
+          Signature dishes will show up here once added in the Django admin.
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="text-center mt-5">
+      <a href="{% url 'restaurant:menu_list' %}" class="btn btn-sp-outline">See Full Menu</a>
+    </div>
+  </div>
+</section>
+
+<section class="sp-section bg-charcoal text-white">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5">
+        <p class="eyebrow">Our Philosophy</p>
+        <h2 class="text-white">Fewer dishes.<br>Better ones.</h2>
+      </div>
+      <div class="col-lg-7">
+        <p class="text-white-50 mb-4">We buy what's good that morning, not what's
+          printed on last month's menu. Portions are generous, plating is
+          restrained, and every table gets the same attention.</p>
+        <a href="{% url 'restaurant:about' %}" class="btn btn-sp-ghost-light">Our Story</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sp-section-tight" style="background-color: var(--sp-gold-light);">
+  <div class="container text-center">
+    <h2 class="mb-3">Planning something special?</h2>
+    <p class="text-muted-sp mb-4">Tell us the occasion in the special requests box and we'll set the table.</p>
+    <a href="{% url 'restaurant:book_reservation' %}" class="btn btn-sp-primary">Book Your Table</a>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+<section class="sp-section">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-5">
+        <p class="eyebrow">Get in Touch</p>
+        <h1 class="mb-4">Contact {{ site.NAME }}</h1>
+        <ul class="list-unstyled">
+          <li class="mb-3"><strong>Phone</strong><br><a href="tel:{{ site.PHONE }}">{{ site.PHONE }}</a></li>
+          <li class="mb-3"><strong>Email</strong><br><a href="mailto:{{ site.EMAIL }}">{{ site.EMAIL }}</a></li>
+          <li class="mb-3"><strong>Address</strong><br>{{ site.ADDRESS_LINE1 }}, {{ site.ADDRESS_LINE2 }}</li>
+        </ul>
+      </div>
+      <div class="col-lg-7">
+        <div class="sp-card">
+          <form method="post" class="sp-form">
+            {% csrf_token %}
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+              </div>
+              <div class="col-md-6">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+              </div>
+              <div class="col-12">
+                <label for="message">Message</label>
+                <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-sp-primary">Send Message</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

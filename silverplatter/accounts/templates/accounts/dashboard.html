@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<section class="sp-section">
+  <div class="container">
+    {% if is_manager %}
+      <p class="eyebrow mb-1">Manager Dashboard</p>
+      <h1 class="mb-4">All Reservations</h1>
+    {% else %}
+      <p class="eyebrow mb-1">Welcome back</p>
+      <h1 class="mb-4">{{ user.first_name|default:user.username }}</h1>
+    {% endif %}
+
+    <div class="sp-card">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="h5 mb-0">{% if is_manager %}Upcoming Bookings{% else %}My Reservations{% endif %}</h2>
+        {% if not is_manager %}
+          <a href="{% url 'restaurant:book_reservation' %}" class="btn btn-sp-outline btn-sm">Book Another Table</a>
+        {% endif %}
+      </div>
+
+      {% if reservations %}
+        <div class="table-responsive">
+          <table class="table sp-table mb-0">
+            <thead>
+              <tr>
+                {% if is_manager %}<th>Guest</th>{% endif %}
+                <th>Date</th>
+                <th>Time</th>
+                <th>Party</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for r in reservations %}
+                <tr>
+                  {% if is_manager %}<td>{{ r.customer.get_full_name|default:r.customer.username }}</td>{% endif %}
+                  <td>{{ r.date|date:"M j, Y" }}</td>
+                  <td>{{ r.time|time:"g:i A" }}</td>
+                  <td>{{ r.party_size }}</td>
+                  <td><span class="status-pill status-confirmed">Confirmed</span></td>
+                  <td>
+                    <form method="post" action="{% url 'restaurant:cancel_reservation' r.pk %}" onsubmit="return confirm('Cancel this reservation?');">
+                      {% csrf_token %}
+                      <button type="submit" class="btn btn-sm btn-sp-outline">Cancel</button>
+                    </form>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% else %}
+        <p class="text-muted-sp mb-0">No reservations to show right now.</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

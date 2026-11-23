@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Log In{% endblock %}
+
+{% block content %}
+<section class="sp-section">
+  <div class="container">
+    <div class="auth-shell">
+      <div class="text-center mb-4">
+        <p class="eyebrow mb-2">Welcome Back</p>
+        <h1 class="h2">Log In</h1>
+      </div>
+
+      {% if form.non_field_errors %}
+        <div class="alert alert-danger">{{ form.non_field_errors.0 }}</div>
+      {% endif %}
+
+      <form method="post" class="sp-form">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="id_username">Username</label>
+          <input type="text" name="username" class="form-control" id="id_username" required autofocus>
+        </div>
+        <div class="mb-3">
+          <label for="id_password">Password</label>
+          <input type="password" name="password" class="form-control" id="id_password" required>
+        </div>
+        <button type="submit" class="btn btn-sp-primary w-100">Log In</button>
+      </form>
+
+      <p class="text-center text-muted-sp small mt-4 mb-0">
+        New here? <a href="{% url 'accounts:signup' %}">Create an account</a>
+      </p>
+    </div>
+  </div>
+</section>
+{% endblock %}

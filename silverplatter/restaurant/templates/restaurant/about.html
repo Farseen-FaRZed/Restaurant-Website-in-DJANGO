@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}About{% endblock %}
+
+{% block content %}
+<section class="sp-hero" style="padding: 4rem 0;">
+  <div class="container text-center">
+    <p class="eyebrow mb-3">About Us</p>
+    <h1 class="mb-0">The Room Behind the Menu</h1>
+  </div>
+</section>
+
+<section class="sp-section">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-6">
+        <p class="eyebrow">Since day one</p>
+        <h2 class="mb-4">A small room with a long memory</h2>
+        <p>{{ site.NAME }} opened with one rule: nothing goes on the plate that
+          isn't worth the seat it's served at. That's meant a short menu that
+          changes with the seasons and a dining room built for conversation.</p>
+      </div>
+      <div class="col-lg-6">
+        <div class="sp-card">
+          <h3 class="h5 mb-3">What guests can expect</h3>
+          <ul class="list-unstyled">
+            <li class="mb-3"><span class="text-gold">&#9670;</span> A seasonal menu that changes with the market</li>
+            <li class="mb-3"><span class="text-gold">&#9670;</span> Instantly confirmed reservations</li>
+            <li class="mb-0"><span class="text-gold">&#9670;</span> Service that remembers your table</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sp-section bg-charcoal text-white text-center">
+  <div class="container">
+    <p class="eyebrow">Visit Us</p>
+    <h2 class="text-white mb-3">{{ site.ADDRESS_LINE1 }}, {{ site.ADDRESS_LINE2 }}</h2>
+    <p class="text-white-50">{{ site.PHONE }} &middot; {{ site.EMAIL }}</p>
+    <a href="{% url 'restaurant:book_reservation' %}" class="btn btn-sp-ghost-light mt-3">Reserve a Table</a>
+  </div>
+</section>
+{% endblock %}

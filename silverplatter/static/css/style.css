@@ -1,0 +1,347 @@
+/* =========================================================================
+   SILVER PLATTER — MAIN STYLESHEET
+   -------------------------------------------------------------------------
+   Everything you'd want to re-theme lives in the :root block below.
+   Change a color or font here and it updates the whole site.
+   ========================================================================= */
+
+:root {
+  /* ---- Palette --------------------------------------------------------- */
+  --sp-ivory:        #F7F1E4;   /* page background */
+  --sp-surface:      #FFFDF8;   /* card / panel background */
+  --sp-charcoal:     #1D1A16;   /* near-black, nav + footer + headings */
+  --sp-burgundy:     #6E1423;   /* primary brand color */
+  --sp-burgundy-dark:#4C0D18;   /* hover / pressed states */
+  --sp-gold:         #C6A15B;   /* accent: rules, borders, highlights */
+  --sp-gold-light:   #E8D6A8;   /* soft gold for tints / badges */
+  --sp-olive:        #4B5A3F;   /* secondary accent */
+  --sp-text:         #2A2520;   /* body copy */
+  --sp-muted:        #7C7166;   /* secondary / caption text */
+  --sp-border:       #E4D9C3;   /* hairline borders on ivory */
+
+  /* ---- Type -------------------------------------------------------------
+     Display face: Fraunces (warm serif) - headings only.
+     Body face:    Karla - everything else.
+  ------------------------------------------------------------------------- */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Karla', 'Segoe UI', sans-serif;
+
+  /* ---- Layout ------------------------------------------------------------ */
+  --sp-radius: 2px;
+  --sp-shadow: 0 12px 32px rgba(29, 26, 22, 0.10);
+}
+
+/* =========================================================================
+   BASE
+   ========================================================================= */
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--sp-ivory);
+  color: var(--sp-text);
+  font-family: var(--font-body);
+  line-height: 1.65;
+}
+
+h1, h2, h3, h4, h5, .display-font {
+  font-family: var(--font-display);
+  color: var(--sp-charcoal);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+a { color: var(--sp-burgundy); text-decoration: none; }
+a:hover { color: var(--sp-burgundy-dark); }
+
+.eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--sp-gold);
+  font-weight: 700;
+}
+
+.text-muted-sp { color: var(--sp-muted); }
+.bg-charcoal { background-color: var(--sp-charcoal); }
+.text-gold { color: var(--sp-gold); }
+
+/* =========================================================================
+   SIGNATURE ELEMENT — the gold "place-setting" rule
+   A thin gold line with a centered diamond, used to divide sections.
+   ========================================================================= */
+.place-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 0 0 2.25rem;
+  color: var(--sp-gold);
+}
+.place-rule::before,
+.place-rule::after {
+  content: '';
+  height: 1px;
+  width: 64px;
+  background: linear-gradient(to var(--dir, right), transparent, var(--sp-gold));
+}
+.place-rule::after { --dir: left; }
+.place-rule .diamond {
+  width: 8px; height: 8px;
+  background: var(--sp-gold);
+  transform: rotate(45deg);
+  flex: 0 0 auto;
+}
+
+/* =========================================================================
+   NAVBAR
+   ========================================================================= */
+.sp-navbar {
+  background-color: var(--sp-charcoal);
+  padding: 0.9rem 0;
+  border-bottom: 1px solid rgba(198, 161, 91, 0.25);
+}
+.sp-navbar .navbar-brand {
+  font-family: var(--font-display);
+  color: var(--sp-ivory) !important;
+  font-size: 1.5rem;
+  letter-spacing: 0.03em;
+}
+.sp-navbar .brand-mark { color: var(--sp-gold); }
+.sp-navbar .nav-link {
+  color: rgba(247, 241, 228, 0.82) !important;
+  font-size: 0.86rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.5rem 1rem !important;
+}
+.sp-navbar .nav-link:hover,
+.sp-navbar .nav-link.active { color: var(--sp-gold) !important; }
+.sp-navbar .btn-reserve {
+  background-color: var(--sp-burgundy);
+  color: var(--sp-ivory);
+  border: 1px solid var(--sp-burgundy);
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--sp-radius);
+}
+.sp-navbar .btn-reserve:hover {
+  background-color: var(--sp-burgundy-dark);
+  border-color: var(--sp-burgundy-dark);
+}
+.sp-navbar .dropdown-menu {
+  background-color: var(--sp-charcoal);
+  border: 1px solid rgba(198, 161, 91, 0.25);
+}
+.sp-navbar .dropdown-item { color: var(--sp-ivory); font-size: 0.88rem; }
+.sp-navbar .dropdown-item:hover { background-color: rgba(198,161,91,0.15); color: var(--sp-gold); }
+
+/* =========================================================================
+   BUTTONS
+   ========================================================================= */
+.btn-sp-primary {
+  background-color: var(--sp-burgundy);
+  border: 1px solid var(--sp-burgundy);
+  color: var(--sp-ivory);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.65rem 1.75rem;
+  border-radius: var(--sp-radius);
+}
+.btn-sp-primary:hover { background-color: var(--sp-burgundy-dark); color: #fff; }
+
+.btn-sp-outline {
+  background: transparent;
+  border: 1px solid var(--sp-gold);
+  color: var(--sp-charcoal);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.6rem 1.6rem;
+  border-radius: var(--sp-radius);
+}
+.btn-sp-outline:hover { background-color: var(--sp-gold); color: var(--sp-charcoal); }
+
+.btn-sp-ghost-light {
+  background: transparent;
+  border: 1px solid rgba(247,241,228,0.5);
+  color: var(--sp-ivory);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.6rem 1.6rem;
+  border-radius: var(--sp-radius);
+}
+.btn-sp-ghost-light:hover { border-color: var(--sp-gold); color: var(--sp-gold); }
+
+/* =========================================================================
+   HERO
+   ========================================================================= */
+.sp-hero {
+  background: linear-gradient(160deg, var(--sp-charcoal) 0%, #2A241C 100%);
+  color: var(--sp-ivory);
+  padding: 6.5rem 0 5.5rem;
+}
+.sp-hero h1 {
+  color: var(--sp-ivory);
+  font-size: clamp(2.6rem, 5vw, 4.2rem);
+  line-height: 1.05;
+}
+.sp-hero .lede {
+  color: rgba(247,241,228,0.78);
+  font-size: 1.15rem;
+  max-width: 40ch;
+}
+.sp-hero .hero-figure {
+  font-family: var(--font-display);
+  color: var(--sp-gold);
+  font-size: 4rem;
+  line-height: 1;
+}
+
+/* =========================================================================
+   SECTIONS / CARDS
+   ========================================================================= */
+.sp-section { padding: 5rem 0; }
+.sp-section-tight { padding: 3rem 0; }
+
+.sp-card {
+  background-color: var(--sp-surface);
+  border: 1px solid var(--sp-border);
+  border-radius: var(--sp-radius);
+  padding: 2rem;
+  height: 100%;
+}
+.sp-card-hover { transition: transform 0.18s ease, box-shadow 0.18s ease; }
+.sp-card-hover:hover { transform: translateY(-4px); box-shadow: var(--sp-shadow); }
+
+.sp-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--sp-gold);
+  color: var(--sp-burgundy);
+  border-radius: var(--sp-radius);
+  background-color: var(--sp-gold-light);
+}
+
+/* =========================================================================
+   MENU CARD — printed-menu look, with dotted price leaders
+   ========================================================================= */
+.menu-category-title { font-size: 1.7rem; margin-bottom: 0.25rem; }
+.menu-item { padding: 1.1rem 0; border-bottom: 1px dashed var(--sp-border); }
+.menu-item:last-child { border-bottom: none; }
+.menu-item-row { display: flex; align-items: baseline; gap: 0.6rem; }
+.menu-item-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.12rem;
+  color: var(--sp-charcoal);
+  white-space: nowrap;
+}
+.menu-item-leader {
+  flex: 1 1 auto;
+  border-bottom: 1px dotted var(--sp-muted);
+  transform: translateY(-4px);
+  opacity: 0.6;
+}
+.menu-item-price {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--sp-burgundy);
+  white-space: nowrap;
+}
+.menu-item-desc { color: var(--sp-muted); font-size: 0.92rem; margin-top: 0.2rem; }
+
+/* =========================================================================
+   FOOTER
+   ========================================================================= */
+.sp-footer {
+  background-color: var(--sp-charcoal);
+  color: rgba(247,241,228,0.75);
+  padding-top: 3.5rem;
+}
+.sp-footer h5 {
+  color: var(--sp-gold);
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.sp-footer a { color: rgba(247,241,228,0.75); }
+.sp-footer a:hover { color: var(--sp-gold); }
+.sp-footer .footer-bottom {
+  border-top: 1px solid rgba(198,161,91,0.2);
+  margin-top: 2.5rem;
+  padding: 1.25rem 0;
+  font-size: 0.82rem;
+  color: rgba(247,241,228,0.5);
+}
+
+/* =========================================================================
+   FORMS
+   ========================================================================= */
+.sp-form label { font-size: 0.85rem; letter-spacing: 0.03em; text-transform: uppercase; color: var(--sp-muted); margin-bottom: 0.35rem; }
+.sp-form .form-control, .sp-form .form-select {
+  border-radius: var(--sp-radius);
+  border-color: var(--sp-border);
+  padding: 0.65rem 0.9rem;
+  background-color: var(--sp-surface);
+}
+.sp-form .form-control:focus, .sp-form .form-select:focus {
+  border-color: var(--sp-gold);
+  box-shadow: 0 0 0 0.2rem rgba(198,161,91,0.25);
+}
+.auth-shell {
+  max-width: 460px;
+  margin: 0 auto;
+  background-color: var(--sp-surface);
+  border: 1px solid var(--sp-border);
+  border-radius: var(--sp-radius);
+  padding: 2.75rem;
+}
+
+/* =========================================================================
+   TABLES (dashboard)
+   ========================================================================= */
+.sp-table thead { background-color: var(--sp-charcoal); color: var(--sp-ivory); }
+.sp-table thead th {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border: none;
+  padding: 0.8rem 1rem;
+}
+.sp-table td { vertical-align: middle; padding: 0.8rem 1rem; }
+.sp-table tbody tr { border-bottom: 1px solid var(--sp-border); }
+
+.status-pill {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  font-weight: 700;
+}
+.status-confirmed { background: #DCE7D6; color: var(--sp-olive); }
+.status-cancelled { background: #F1D8D8; color: var(--sp-burgundy-dark); }
+
+/* =========================================================================
+   UTILITIES
+   ========================================================================= */
+.section-heading { max-width: 640px; }
+.section-heading.center { margin: 0 auto; text-align: center; }
+@media (max-width: 767px) {
+  .sp-hero { padding: 4.5rem 0 3.5rem; text-align: center; }
+  .sp-hero .lede { margin-left: auto; margin-right: auto; }
+}
+a:focus-visible, button:focus-visible, .btn:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--sp-gold);
+  outline-offset: 2px;
+}

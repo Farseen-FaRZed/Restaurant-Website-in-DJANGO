@@ -1,0 +1,30 @@
+<footer class="sp-footer">
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-lg-4">
+        <h5 style="color: var(--sp-gold); text-transform:none;">&#9670; {{ site.NAME }}</h5>
+        <p class="text-white-50 small">{{ site.TAGLINE }}</p>
+      </div>
+      <div class="col-lg-4 col-6">
+        <h5>Explore</h5>
+        <ul class="list-unstyled small">
+          <li class="mb-2"><a href="{% url 'restaurant:menu_list' %}">Menu</a></li>
+          <li class="mb-2"><a href="{% url 'restaurant:about' %}">About Us</a></li>
+          <li class="mb-2"><a href="{% url 'restaurant:book_reservation' %}">Reserve a Table</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4 col-6">
+        <h5>Visit</h5>
+        <ul class="list-unstyled small">
+          <li class="mb-2">{{ site.ADDRESS_LINE1 }}, {{ site.ADDRESS_LINE2 }}</li>
+          <li class="mb-2"><a href="tel:{{ site.PHONE }}">{{ site.PHONE }}</a></li>
+          <li class="mb-2"><a href="mailto:{{ site.EMAIL }}">{{ site.EMAIL }}</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+      <span>&copy; {% now "Y" %} {{ site.NAME }}. All rights reserved.</span>
+    </div>
+  </div>
+</footer>

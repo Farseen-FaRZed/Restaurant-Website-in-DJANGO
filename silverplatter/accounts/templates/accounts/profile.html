@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+<section class="sp-section">
+  <div class="container">
+    <div class="auth-shell">
+      <div class="text-center mb-4">
+        <p class="eyebrow mb-2">{{ user.get_role_display }}</p>
+        <h1 class="h2">My Profile</h1>
+      </div>
+
+      <form method="post" class="sp-form">
+        {% csrf_token %}
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="{{ form.first_name.id_for_label }}">First Name</label>
+            {{ form.first_name }}
+          </div>
+          <div class="col-md-6">
+            <label for="{{ form.last_name.id_for_label }}">Last Name</label>
+            {{ form.last_name }}
+          </div>
+          <div class="col-12">
+            <label for="{{ form.email.id_for_label }}">Email</label>
+            {{ form.email }}
+          </div>
+          <div class="col-12">
+            <label for="{{ form.phone.id_for_label }}">Phone</label>
+            {{ form.phone }}
+          </div>
+          <div class="col-12 pt-2">
+            <button type="submit" class="btn btn-sp-primary w-100">Save Changes</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.querySelectorAll('.sp-form input').forEach(function (el) { el.classList.add('form-control'); });
+</script>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Reserve a Table{% endblock %}
+
+{% block content %}
+<section class="sp-section">
+  <div class="container" style="max-width: 600px;">
+    <div class="text-center mb-5">
+      <p class="eyebrow mb-2">{{ site.NAME }}</p>
+      <h1>Reserve a Table</h1>
+      <p class="text-muted-sp">Your table is confirmed the moment you book it.</p>
+    </div>
+
+    <div class="sp-card">
+      <form method="post" class="sp-form">
+        {% csrf_token %}
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="{{ form.date.id_for_label }}">Date</label>
+            {{ form.date }}
+            {% if form.date.errors %}<div class="text-danger small mt-1">{{ form.date.errors.0 }}</div>{% endif %}
+          </div>
+          <div class="col-md-6">
+            <label for="{{ form.time.id_for_label }}">Time</label>
+            {{ form.time }}
+          </div>
+          <div class="col-md-6">
+            <label for="{{ form.party_size.id_for_label }}">Party Size</label>
+            {{ form.party_size }}
+          </div>
+          <div class="col-12">
+            <label for="{{ form.special_requests.id_for_label }}">Special Requests</label>
+            {{ form.special_requests }}
+          </div>
+          <div class="col-12 pt-2">
+            <button type="submit" class="btn btn-sp-primary w-100">Confirm Reservation</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.querySelectorAll('.sp-form input, .sp-form textarea').forEach(function (el) {
+    el.classList.add('form-control');
+  });
+</script>
+{% endblock %}

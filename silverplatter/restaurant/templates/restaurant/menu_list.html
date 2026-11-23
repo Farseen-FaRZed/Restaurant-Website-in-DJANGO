@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Menu{% endblock %}
+
+{% block content %}
+<section class="sp-hero" style="padding: 4rem 0;">
+  <div class="container text-center">
+    <p class="eyebrow mb-3">Seasonal &middot; Subject to Change</p>
+    <h1 class="mb-0">The Menu</h1>
+  </div>
+</section>
+
+<section class="sp-section">
+  <div class="container" style="max-width: 820px;">
+    {% for category, dishes in menu.items %}
+      <div class="mb-5">
+        <h2 class="menu-category-title text-center">{{ category }}</h2>
+        <div class="place-rule"><span class="diamond"></span></div>
+
+        {% for item in dishes %}
+          <div class="menu-item">
+            <div class="menu-item-row">
+              <span class="menu-item-name">
+                {{ item.name }}
+                {% if item.is_signature %}<span class="sp-badge ms-1">Signature</span>{% endif %}
+              </span>
+              <span class="menu-item-leader"></span>
+              <span class="menu-item-price">${{ item.price }}</span>
+            </div>
+            {% if item.description %}<p class="menu-item-desc mb-0">{{ item.description }}</p>{% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% empty %}
+      <div class="text-center text-muted-sp">
+        <p>The menu is empty right now.</p>
+        <p>Add dishes from the <a href="/admin/">Django admin</a> — Restaurant &rarr; Menu items.</p>
+      </div>
+    {% endfor %}
+
+    <div class="text-center mt-5">
+      <a href="{% url 'restaurant:book_reservation' %}" class="btn btn-sp-primary">Reserve a Table</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
