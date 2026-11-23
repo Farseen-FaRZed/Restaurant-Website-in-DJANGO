@@ -1,7 +1,6 @@
 # Silver Platter (Lite)
 
-A simpler version of the Silver Platter website. Same look, same core
-features, much less code to read.
+The 1st simple version of the Silver Platter website.
 
 ## How to run it
 
@@ -20,7 +19,6 @@ The database (`db.sqlite3`) already has some demo data in it. Log in with:
 | Manager  | `manager`  | `SilverManager123!` |
 | Customer | `customer` | `SilverGuest123!`   |
 
-Change these before showing the site to anyone else!
 
 ## How it's organized
 
@@ -29,8 +27,6 @@ Only 2 apps this time:
 - **accounts/** — the User model (with a `role` field), and login/signup/dashboard pages.
 - **restaurant/** — the menu, and the reservation booking system.
 
-There's no separate "core" app anymore — the home/about/contact pages just
-live inside `restaurant/`, since they're restaurant pages.
 
 ## How the roles work
 
@@ -47,12 +43,12 @@ live inside `restaurant/`, since they're restaurant pages.
 - Restaurant name/phone/address/hours → top of `silverplatter/settings.py`
   (the `SITE_CONFIG` dictionary).
 - Colors and fonts → top of `static/css/style.css`.
-- Menu items → `/admin/` (Restaurant → Menu items). No code needed.
+- Menu items → `/admin/` (Restaurant → Menu items).
 - Page text (hero, about, etc.) → the `.html` files in
   `restaurant/templates/restaurant/`.
 
 ## Notes
 
-- Reservations are confirmed instantly — no manager approval step.
+- Reservations are confirmed instantly.
 - The contact form doesn't send a real email yet (there's a comment in
   `restaurant/views.py` showing where to add that later).
